@@ -13,4 +13,8 @@ class Paket extends Model
         'description',
         'price',
     ];
+    public function orders()
+    {
+        return $this->hasMany(related: Order::class);
+    }
 }
