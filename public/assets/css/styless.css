@@ -1,0 +1,21 @@
+.owl-informasi  .owl-dots .owl-dot {
+    visibility: collapse;
+    display: none;
+    margin:0;
+    padding: 0;
+}
+.owl-informasi .owl-stage-outer .owl-stage {
+    margin-left: 0;
+    margin-right: 0;
+}
+.owl-nav {
+    visibility: collapse;
+}
+.bg-blue {
+    background-color: #a1dbea;
+    color: #a1dbea;
+}
+.bg-gray {
+    background-color: #f2f2f2;
+    color: #f2f2f2;
+}

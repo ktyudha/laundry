@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Promo;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PromoController extends Controller
 {
@@ -13,7 +16,9 @@ class PromoController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $promos = Promo::all();
+        return view('admin.promo.index', compact('promos'));
     }
 
     /**
