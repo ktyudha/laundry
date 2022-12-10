@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promo;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use app;
 
 class PromoController extends Controller
 {
@@ -39,7 +43,30 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'tagline' => 'required',
+            'status' => 'required',
+            'body' => 'required',
+            'image_url' => 'mimes:jpg,png,jpeg|image|max:1024',
+        ]);
+
+        $newName = '';
+
+        if ($request->file('image_url')) {
+            $extension = $request->file('image_url')->getClientOriginalExtension();
+            $newName = $request->title . '-' . now()->timestamp . '.' . $extension;
+            $request->file('image_url')->storeAs('images', $newName);
+        }
+
+        Promo::create([
+            'title' => $request->title,
+            'tagline' => $request->tagline,
+            'status' => $request->status,
+            'body' => $request->body,
+            'image_url' => $request['image_url'] = $newName
+        ]);
+        return redirect()->route('promo.index');
     }
 
     /**
@@ -59,9 +86,10 @@ class PromoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Promo $promo)
     {
-        //
+        return view('admin.promo.edit', compact('promo'));
+        return redirect()->route('article.index');
     }
 
     /**
@@ -71,9 +99,37 @@ class PromoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Promo $promo)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'tagline' => 'required',
+            'status' => 'required',
+            'body' => 'required',
+            'image_url' => 'mimes:jpg,png,jpeg|image|max:3072',
+        ]);
+
+        $newName = '';
+
+        $values = [
+            'title' => $request->title,
+            'tagline' => $request->tagline,
+            'status' => $request->status,
+            'body' => $request->body,
+        ];
+        if ($request->file('image_url')) {
+            if ($promo->image_url) {
+                unlink('storage/images/' . $promo->image_url);
+            }
+            $extension = $request->file('image_url')->getClientOriginalExtension();
+            $newName = $request->title . '-' . now()->timestamp . '.' . $extension;
+            $request->file('image_url')->storeAs('images', $newName);
+
+            $values['image_url'] = $newName;
+        }
+
+        $promo->update($values);
+        return redirect()->route('promo.index');
     }
 
     /**
@@ -84,6 +140,9 @@ class PromoController extends Controller
      */
     public function destroy(Promo $promo)
     {
+        if ($promo->image_url) {
+            unlink('storage/images/' . $promo->image_url);
+        }
         Promo::destroy($promo->id);
         return redirect()->route('promo.index');
     }

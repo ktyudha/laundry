@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Paket;
+use App\Models\Promo;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class OrderController extends Controller
 {
@@ -13,7 +18,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('admin.order.index', compact('orders'));
     }
 
     /**
@@ -21,9 +27,25 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'no_hp' => 'required',
+            'status' => 'required',
+            'jumlah' => 'required',
+            'sumofprice' => 'required',
+        ]);
+
+        Promo::create([
+            'name' => $request->name,
+            'no_hp' => $request->no_hp,
+            'category_id' => Category::id(),
+            'paket_id' => Paket::id(),
+            'status' => $request->status,
+            'body' => $request->body,
+        ]);
+        return redirect()->route('promo.index');
     }
 
     /**
