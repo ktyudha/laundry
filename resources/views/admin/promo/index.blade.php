@@ -6,7 +6,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <a href="" class="btn btn-primary mb-3"><i class="nav-icon fas fa-plus"></i> Add</a>
+            <a href="{{ route('promo.create') }}" class="btn btn-primary mb-3"><i class="nav-icon fas fa-plus"></i> Add</a>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>

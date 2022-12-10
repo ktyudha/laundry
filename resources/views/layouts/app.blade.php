@@ -9,7 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    {{--  <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">  --}}
 
     <!-- Scripts -->
     {{--  @vite(['resources/css/app.css', 'resources/js/app.js'])  --}}
@@ -22,7 +22,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('assets/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- Sweetalert -->
     <link rel="stylesheet" href="app/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
@@ -49,9 +49,9 @@
         <!-- Page Content -->
         <div class="content-wrapper">
             @include('admin.breadcrumb')
-            <div class="col-md-12 px-3">
-                {{ $slot }}
-            </div>
+
+            {{ $slot }}
+
         </div>
 
         <aside class="control-sidebar control-sidebar-dark">
@@ -68,14 +68,21 @@
         </footer>
     </div>
 
-    <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE -->
-    <script src="{{ asset('assets/js/adminlte.js') }}"></script>
+    <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
     <!-- Summernote -->
-    <script src="{{ asset('assets/summernote/summernote-bs4-min.js') }}"></script>
-    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('assets/js/pages/dashboard3.js') }}"></script>
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+
+        })
+    </script>
+    <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -89,6 +96,7 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
     <script>
         $(function() {
             $("#example1").DataTable({
