@@ -18,6 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $paket = Paket::id();
         $orders = Order::all();
         return view('admin.order.index', compact('orders'));
     }
@@ -29,23 +30,10 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'no_hp' => 'required',
-            'status' => 'required',
-            'jumlah' => 'required',
-            'sumofprice' => 'required',
-        ]);
-
-        Promo::create([
-            'name' => $request->name,
-            'no_hp' => $request->no_hp,
-            'category_id' => Category::id(),
-            'paket_id' => Paket::id(),
-            'status' => $request->status,
-            'body' => $request->body,
-        ]);
-        return redirect()->route('promo.index');
+        $categories = Category::all();
+        $pakets = Paket::all();
+        // $category = Category::all(['pakaian']);
+        return view('admin.order.create', compact('categories', 'pakets'));
     }
 
     /**
@@ -56,7 +44,23 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'no_hp' => 'required',
+            'status' => 'required',
+            'jumlah' => 'required',
+            'sumofprice' => 'required',
+        ]);
+
+        Order::create([
+            'name' => $request->name,
+            'no_hp' => $request->no_hp,
+            'category_id' => $request->category_id,
+            'paket_id' => $request->paket_id,
+            'status' => $request->status,
+            'sumofprice' => $request->sumofprice,
+        ]);
+        return redirect()->route('order.index');
     }
 
     /**

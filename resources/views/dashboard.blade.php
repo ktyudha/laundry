@@ -1,8 +1,8 @@
 <x-app-layout>
 
     <div class="col-md-12">
-        <div class="bg-white">
-            <span class="text-capitalize px-5">you're logged in!</span>
+        <div class="bg-white py-2">
+            <span class="text-capitalize px-5">{{ Auth::user()['name'] }} logged in!</span>
         </div>
     </div>
 

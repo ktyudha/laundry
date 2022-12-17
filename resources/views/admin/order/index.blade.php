@@ -15,6 +15,7 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Nomor HP</th>
+                                        <th>Paket</th>
                                         <th>Status</th>
                                         <th>Total</th>
                                         <th>Action</th>
@@ -26,7 +27,9 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td class="text-capitalize">{{ $order->name }}</td>
                                             <td>{{ $order->no_hp }}</td>
+                                            <td class="text-center text-capitalize">{{ $paket['name'] }}</td>
                                             <td class="text-center text-capitalize">{{ $order->status }}</td>
+                                            <td class="text-center text-capitalize">{{ $order->sumofprice }}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                     action="{{ route('order.destroy', $order) }}" method="POST">

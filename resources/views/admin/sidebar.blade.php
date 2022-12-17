@@ -45,7 +45,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="?page=add carousel" class="nav-link">
+                        <a href="{{ route('carousel.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-sliders-h"></i>
                             <p class="text-capitalize">carousel</p>
                         </a>

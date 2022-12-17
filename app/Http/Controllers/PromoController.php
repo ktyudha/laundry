@@ -89,7 +89,7 @@ class PromoController extends Controller
     public function edit(Promo $promo)
     {
         return view('admin.promo.edit', compact('promo'));
-        return redirect()->route('article.index');
+        return redirect()->route('promo.index');
     }
 
     /**

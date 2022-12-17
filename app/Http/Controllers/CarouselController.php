@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class CarouselController extends Controller
 {
@@ -13,7 +15,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        //
+        $carousels = Carousel::all();
+        return view('admin.carousel.index', compact('carousels'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.carousel.create');
     }
 
     /**
@@ -34,7 +37,26 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'status' => 'required',
+            'image_url' => 'mimes:jpg,png,jpeg|image|max:1024',
+        ]);
+
+        $newName = '';
+
+        if ($request->file('image_url')) {
+            $extension = $request->file('image_url')->getClientOriginalExtension();
+            $newName = $request->name . '-' . now()->timestamp . '.' . $extension;
+            $request->file('image_url')->storeAs('images/carousel', $newName);
+        }
+
+        Carousel::create([
+            'name' => $request->name,
+            'status' => $request->status,
+            'image_url' => $request['image_url'] = $newName
+        ]);
+        return redirect()->route('carousel.index');
     }
 
     /**
@@ -54,9 +76,10 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Carousel $carousel)
     {
-        //
+        return view('admin.carousel.edit', compact('carousel'));
+        return redirect()->route('carousel.index');
     }
 
     /**
@@ -66,9 +89,33 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Carousel $carousel)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'status' => 'required',
+            'image_url' => 'mimes:jpg,png,jpeg|image|max:1024',
+        ]);
+
+        $newName = '';
+
+        $values = [
+            'name' => $request->name,
+            'status' => $request->status,
+        ];
+        if ($request->file('image_url')) {
+            if ($carousel->image_url) {
+                unlink('storage/images/carousel' . $carousel->image_url);
+            }
+            $extension = $request->file('image_url')->getClientOriginalExtension();
+            $newName = $request->name . '-' . now()->timestamp . '.' . $extension;
+            $request->file('image_url')->storeAs('images/carousel', $newName);
+
+            $values['image_url'] = $newName;
+        }
+
+        $carousel->update($values);
+        return redirect()->route('carousel.index');
     }
 
     /**
@@ -77,8 +124,12 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Carousel $carousel)
     {
-        //
+        if ($carousel->image_url) {
+            unlink('storage/images/carousel/' . $carousel->image_url);
+        }
+        carousel::destroy($carousel->id);
+        return redirect()->route('carousel.index');
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('no_hp');
+            $table->string('no_hp');
             $table->foreignId('category_id')->constrained();
             $table->foreignId('paket_id')->constrained();
             $table->enum('status', ['queue', 'proccess', 'finish'])->default('queue');
