@@ -18,7 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $paket = Paket::id();
+        // $paket = Paket::id();
         $orders = Order::all();
         return view('admin.order.index', compact('orders'));
     }
@@ -48,9 +48,15 @@ class OrderController extends Controller
             'name' => 'required',
             'no_hp' => 'required',
             'status' => 'required',
+            'category_id' => 'required',
+            'paket_id' => 'required',
             'jumlah' => 'required',
-            'sumofprice' => 'required',
         ]);
+
+        $category = Category::find($request->category_id);
+        $price = 0;
+
+        $price = $request->jumlah * $category['price'];
 
         Order::create([
             'name' => $request->name,
@@ -58,7 +64,8 @@ class OrderController extends Controller
             'category_id' => $request->category_id,
             'paket_id' => $request->paket_id,
             'status' => $request->status,
-            'sumofprice' => $request->sumofprice,
+            'jumlah' => $request->jumlah,
+            'sumofprice' => $request['sumofprice'] = $price,
         ]);
         return redirect()->route('order.index');
     }
@@ -80,9 +87,12 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Order $order)
     {
-        //
+        $categories = Category::all();
+        $pakets = Paket::all();
+        return view('admin.order.edit', compact('order', 'categories', 'pakets'));
+        return redirect()->route('order.index');
     }
 
     /**
@@ -92,9 +102,32 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'no_hp' => 'required',
+            'status' => 'required',
+            'category_id' => 'required',
+            'paket_id' => 'required',
+            'jumlah' => 'required',
+        ]);
+        $category = Category::find($request->category_id);
+        $price = 0;
+
+        $price = $request->jumlah * $category['price'];
+
+        $values = [
+            'name' => $request->name,
+            'no_hp' => $request->no_hp,
+            'category_id' => $request->category_id,
+            'paket_id' => $request->paket_id,
+            'status' => $request->status,
+            'jumlah' => $request->jumlah,
+            'sumofprice' => $request['sumofprice'] = $price,
+        ];
+        $order->update($values);
+        return redirect()->route('order.index');
     }
 
     /**
@@ -103,8 +136,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        Order::destroy($order->id);
+        return redirect()->route('order.index');
     }
 }

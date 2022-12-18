@@ -55,7 +55,7 @@ class PromoController extends Controller
 
         if ($request->file('image_url')) {
             $extension = $request->file('image_url')->getClientOriginalExtension();
-            $newName = $request->title . '-' . now()->timestamp . '.' . $extension;
+            $newName = Str::words($request->title, 2) . '-' . now()->timestamp . '.' . $extension;
             $request->file('image_url')->storeAs('images', $newName);
         }
 
@@ -122,7 +122,7 @@ class PromoController extends Controller
                 unlink('storage/images/' . $promo->image_url);
             }
             $extension = $request->file('image_url')->getClientOriginalExtension();
-            $newName = $request->title . '-' . now()->timestamp . '.' . $extension;
+            $newName = Str::words($request->title, 2) . '-' . now()->timestamp . '.' . $extension;
             $request->file('image_url')->storeAs('images', $newName);
 
             $values['image_url'] = $newName;

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PromoController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CarouselController;
 
@@ -17,9 +18,10 @@ use App\Http\Controllers\CarouselController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
