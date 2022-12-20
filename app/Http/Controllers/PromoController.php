@@ -56,7 +56,7 @@ class PromoController extends Controller
         if ($request->file('image_url')) {
             $extension = $request->file('image_url')->getClientOriginalExtension();
             $newName = Str::words($request->title, 2) . '-' . now()->timestamp . '.' . $extension;
-            $request->file('image_url')->storeAs('images', $newName);
+            $request->file('image_url')->storeAs('images/promo', $newName);
         }
 
         Promo::create([
@@ -123,7 +123,7 @@ class PromoController extends Controller
             }
             $extension = $request->file('image_url')->getClientOriginalExtension();
             $newName = Str::words($request->title, 2) . '-' . now()->timestamp . '.' . $extension;
-            $request->file('image_url')->storeAs('images', $newName);
+            $request->file('image_url')->storeAs('images/promo', $newName);
 
             $values['image_url'] = $newName;
         }

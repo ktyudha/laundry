@@ -1,8 +1,8 @@
 <br>
 <br>
-<nav class="navbar navbar-expand-lg fixed-top bg-white pt-2">
+<nav class="navbar navbar-expand-lg fixed-top bg-white pt-2" id="navbar">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="assets/img/rsz_11423-01.png" alt=""><b
+        <a class="navbar-brand" href="#"><img src="{{asset('assets/images/laundry bg-white.png')}}" alt=""><b
                 class="">LaundryKu</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,16 +11,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto my-auto">
                 <li class="nav-item my-auto">
-                    <a class="nav-link  fw-semibold" href="#promo">Promo</a>
+                    <a class="nav-link scrollto fw-semibold active" href="#promo">Promo</a>
                 </li>
                 <li class="nav-item my-auto">
-                    <a class="nav-link  fw-semibold" href="#servis">Servis</a>
+                    <a class="nav-link scrollto fw-semibold" href="#servis">Servis</a>
                 </li>
                 <li class="nav-item my-auto">
-                    <a class="nav-link fw-semibold" href="#tempat">Tempat</a>
+                    <a class="nav-link scrollto fw-semibold" href="#tempat">Tempat</a>
                 </li>
                 <li class="nav-item my-auto">
-                    <a class="nav-link fw-semibold" href="#profil">Profil</a>
+                    <a class="nav-link scrollto fw-semibold" href="#profil">Profil</a>
                 </li>
                 <li class="nav-item my-auto">
                     <a href="users-signup/" class="nav-link">
@@ -36,3 +36,4 @@
         </div>
     </div>
 </nav>
+

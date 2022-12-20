@@ -16,19 +16,34 @@ class PaketSeeder extends Seeder
     public function run()
     {
         Paket::create([
-            'name' => 'cuci',
-            'description' => 'cuci basah',
+            'name' => 'cuci komplit reguler',
+            'description' => 'cuci, kering, setrika (3 hari)',
+            'price' => '4000',
+            'image_url' => 'WASHING-01.svg',
+        ]);
+        Paket::create([
+            'name' => 'cuci komplit express',
+            'description' => 'cuci, kering, setrika (1 hari)',
+            'price' => '5000',
+            'image_url' => 'DIRTY-01.svg',
+        ]);
+        Paket::create([
+            'name' => 'cuci + kering',
+            'description' => 'cuci dan dikeringkan minim 3kg',
             'price' => '3000',
+            'image_url' => 'DRYING-01.svg',
         ]);
         Paket::create([
             'name' => 'setrika',
-            'description' => 'setrika pakaian & jas, tidak harus cuci disini',
-            'price' => '4000',
+            'description' => 'bisa membawa baju dari rumah',
+            'price' => '3000',
+            'image_url' => 'FOLDING-01.svg',
         ]);
         Paket::create([
-            'name' => 'cuci + setrika',
-            'description' => 'cuci dan setrika',
-            'price' => '6500',
+            'name' => 'setrika expresss',
+            'description' => 'setrika pakaian & jas, tidak harus cuci disini',
+            'price' => '4000',
+            'image_url' => 'FOLDING-01.svg',
         ]);
     }
 }

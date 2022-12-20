@@ -23,7 +23,7 @@
                                     @foreach ($promos as $promo)
                                         <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
-                                            <td class="text-center"><img src="/storage/images/{{ $promo->image_url }}"
+                                            <td class="text-center"><img src="/storage/images/promo/{{ $promo->image_url }}"
                                                     style="width:200px;"></td>
                                             <td class="font-weight-bold">{{ $promo->title }}</td>
                                             <td class="text-center text-capitalize">{{ $promo->status }}</td>
@@ -63,7 +63,7 @@
                                                             <div class="row">
                                                                 {{--  <!-- IMAGE -->  --}}
                                                                 <div class="col-md-5">
-                                                                    <img src="{{ 'storage/images/' . $promo->image_url }}"
+                                                                    <img src="{{ 'storage/images/promo/' . $promo->image_url }}"
                                                                         class="img-fluid rounded mt-2"
                                                                         alt="$promo->title">
                                                                     <span class="badge bg-light text-dark mt-3">

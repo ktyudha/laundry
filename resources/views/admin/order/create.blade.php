@@ -125,7 +125,7 @@
 
             var jumlah = $('#jumlah').val() || 0;
             var total = price * jumlah;
-
+console.log(total);
             $('#sumofprice').val(total);
         }
     </script>

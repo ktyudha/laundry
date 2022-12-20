@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->text('image_url');
             $table->unsignedBigInteger('price');
             $table->timestamps();
         });

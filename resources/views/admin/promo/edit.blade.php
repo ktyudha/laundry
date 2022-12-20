@@ -33,7 +33,7 @@
                                             <input type="file" class="form-control-file" name="image_url"
                                                 id="image_url" onchange="previewImage()">
                                             @if ($promo->image_url)
-                                                <img src="{{ asset('storage/images/' . $promo->image_url) }}"
+                                                <img src="{{ asset('storage/images/promo/' . $promo->image_url) }}"
                                                     class="img-preview img-fluid w-50 mt-3">
                                             @else
                                                 <img class="img-preview img-fluid w-50 mt-3">
