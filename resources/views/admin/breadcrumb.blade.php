@@ -28,6 +28,8 @@
                             carousel
                         @elseif(Request::is('order', 'order/*'))
                             order
+                        @elseif(Request::is('post', 'post/*'))
+                            post
                         @endif
                     </li>
                     @if (!Request::is('dashboard'))

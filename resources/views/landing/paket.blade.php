@@ -3,20 +3,20 @@
 <section class="servis my-5" id="servis">
     <div class="container">
         <div class="row">
-            <h1 class="text-center fw-bold">Tipe</h1>
+            <h1 class="text-center fw-bold">Paket</h1>
             <div class="owl-servis owl-carousel owl-theme owl-lazy">
-                @foreach ($categories as $category)
+                @foreach ($pakets as $paket)
                     <button type="button" class="border-0 bg-white text-dark"
-                        data-bs-target="#myModalCategory-{{ $loop->iteration }}" data-bs-toggle="modal">
+                        data-bs-target="#myModalPaket-{{ $loop->iteration }}" data-bs-toggle="modal">
                         <div class="item">
                             <div class="card border-0 mx-1 my-3" onmouseover="onMouseOver(this)"
                                 onmouseout="onMouseOut(this)">
                                 <div class="mt-3 mx-3">
-                                    <img src="{{ asset('storage/images/category/' . $category->image_url) }}"
+                                    <img src="{{ asset('storage/images/paket/' . $paket->image_url) }}"
                                         class="card-img-top rounded" alt="...">
                                 </div>
                                 <div class="card-body text-center">
-                                    <h5 class="card-title text-capitalize fw-bold">{{ $category->name }}</h5>
+                                    <h5 class="card-title text-capitalize fw-bold">{{ $paket->name }}</h5>
                                     <!-- <p class="card-text"><i class="fas fa-calendar-alt"></i> Berlaku hingga</p> -->
                                 </div>
                             </div>
@@ -25,8 +25,8 @@
                 @endforeach
             </div>
 
-            @foreach ($categories as $category)
-                <div class="modal" id="myModalCategory-{{ $loop->iteration }}">
+            @foreach ($pakets as $paket)
+                <div class="modal" id="myModalPaket-{{ $loop->iteration }}">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
 
@@ -38,7 +38,7 @@
                                     <div class="row">
                                         <!-- IMAGE -->
                                         <div class="col-md-5">
-                                            <img src="{{ asset('storage/images/category/' . $category->image_url) }}"
+                                            <img src="{{ asset('storage/images/paket/' . $paket->image_url) }}"
                                                 class="img-fluid rounded mt-2" alt="...">
                                             <span class="badge bg-light text-dark mt-3">
                                                 <div class="row">
@@ -47,8 +47,8 @@
                                         </div>
                                         <!-- body -->
                                         <div class="col-md-7 my-auto">
-                                            <h3 class="fw-bold">{{ $category->name }}</h3>
-                                            <p>{{ $category->price }}</p>
+                                            <h3 class="fw-bold">{{ $paket->name }}</h3>
+                                            <p>{{ $paket->price }}</p>
                                             <a href="users-signin/">
                                                 <button class="btn btn-primary text-center fw-bold mt-3"
                                                     type="submit">Pesan Sekarang</button>

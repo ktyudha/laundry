@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\LandingController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('promo', PromoController::class);
     Route::resource('carousel', CarouselController::class);
     Route::resource('order', OrderController::class);
+    Route::resource('post', PostController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -39,7 +39,7 @@
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-globe"></i>
                     <p>
-                        Posts
+                        Sites
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -54,6 +54,12 @@
                         <a href="{{ route('promo.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-tags"></i>
                             <p class="text-capitalize">promo</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('post.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-layer-group"></i>
+                            <p class="text-capitalize">post</p>
                         </a>
                     </li>
                 </ul>

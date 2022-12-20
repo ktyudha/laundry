@@ -33,7 +33,7 @@
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <button type="button" class="btn bg-white border-0 text-uppercase fw-bold"
-                                    data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i> Promo</button>
+                                    data-bs-dismiss="modal"><i class="fas fa-chevron-left"></i> Promo</button>
                                 <div class="card border-0 my-3 me-3">
                                     <div class="row">
                                         <!-- IMAGE -->

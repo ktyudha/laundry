@@ -10,7 +10,8 @@
     @include('landing.carousel')
     @include('landing.promo')
     @include('landing.category')
-    @include('landing.informasi')
+    @include('landing.paket')
+    @include('landing.post')
     @include('landing.profile')
     {{--  {{ $slot }}  --}}
     @include('landing.footer')

@@ -6,6 +6,7 @@ use App\Models\Paket;
 use App\Models\Promo;
 use App\Models\Carousel;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -19,6 +20,7 @@ class LandingController extends Controller
         $carousels = Carousel::all();
         $promos = Promo::where('status', 'publish')->orderBy('updated_at', 'desc')->limit('3')->get();
         $pakets = Paket::all();
-        return view('home', compact('categories', 'carousels', 'promos','pakets'));
+        $posts = Post::all();
+        return view('home', compact('categories', 'carousels', 'promos','pakets','posts'));
     }
 }
