@@ -5,9 +5,9 @@
                 <h1 class="m-0 text-capitalize font-weight-bold">
                     @if (Request::is('dashboard'))
                         dashboard
-                    @elseif(Request::is('promo'))
+                    @elseif(Request::is('admin/promo'))
                         promo
-                    @elseif(Request::is('order'))
+                    @elseif(Request::is('admin/order'))
                         order
                     @elseif(Request::is('*/create', '*/create'))
                         create
@@ -22,13 +22,13 @@
                     <li class="breadcrumb-item text-capitalize active">
                         @if (Request::is('dashboard'))
                             dashboard
-                        @elseif (Request::is('promo', 'promo/*'))
+                        @elseif (Request::is('admin/promo', 'admin/promo/*'))
                             promo
-                        @elseif(Request::is('carousel', 'carousel/*'))
+                        @elseif(Request::is('admin/carousel', 'admin/carousel/*'))
                             carousel
-                        @elseif(Request::is('order', 'order/*'))
+                        @elseif(Request::is('admin/order', 'admin/order/*'))
                             order
-                        @elseif(Request::is('post', 'post/*'))
+                        @elseif(Request::is('admin/post', 'admin/post/*'))
                             post
                         @endif
                     </li>

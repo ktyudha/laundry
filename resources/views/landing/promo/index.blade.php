@@ -70,7 +70,7 @@
                                 <!-- body -->
                                 <div class="col-md-7">
                                     <h3 class="fw-bold">{{ $promo->tagline }}</h3>
-                                    <p>{{ $promo->body }}</p>
+                                    <p>{!! $promo->body !!}</p>
                                     <a href="../users-signin/">
                                         <button class="btn btn-primary text-center fw-bold mt-3" type="submit">Pesan
                                             Sekarang</button>

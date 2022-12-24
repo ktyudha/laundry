@@ -48,7 +48,7 @@ class PromoController extends Controller
             'tagline' => 'required',
             'status' => 'required',
             'body' => 'required',
-            'image_url' => 'mimes:jpg,png,jpeg|image|max:1024',
+            'image_url' => 'mimes:jpg,png,jpeg|image',
         ]);
 
         $newName = '';
@@ -106,7 +106,7 @@ class PromoController extends Controller
             'tagline' => 'required',
             'status' => 'required',
             'body' => 'required',
-            'image_url' => 'mimes:jpg,png,jpeg|image|max:3072',
+            'image_url' => 'mimes:jpg,png,jpeg|image',
         ]);
 
         $newName = '';
