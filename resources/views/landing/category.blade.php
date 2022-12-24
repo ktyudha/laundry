@@ -61,13 +61,6 @@
                     </div>
                 </div>
             @endforeach
-
-            <div class="text-center">
-                <a href="servis/">
-                    <button class="btn btn-primary text-center mt-3 fw-semibold" type="submit" name="btnservis"
-                        id="btnservis">Lihat Semua Servis</button>
-                </a>
-            </div>
         </div>
     </div>
 </section>

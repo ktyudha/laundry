@@ -6,16 +6,15 @@
 </head>
 
 <body>
-    @include('landing.navbar')
+    {{--  @include('landing.navbar')
     @include('landing.carousel')
     @include('landing.promo')
     @include('landing.category')
     @include('landing.paket')
     @include('landing.post')
-    @include('landing.profile')
+    @include('landing.profile')  --}}
     {{--  {{ $slot }}  --}}
-    @include('landing.footer')
-    @include('landing.footer-link')
 </body>
+@include('landing.footer-link')
 
 </html>

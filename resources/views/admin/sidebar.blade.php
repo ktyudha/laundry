@@ -24,7 +24,7 @@
     <nav class="mt-2">
         <ul class="nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ route('dashboard') }}" class="nav-link">
+                <a href="dashboard" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p class="text-capitalize">dashboard</p>
                 </a>

@@ -23,4 +23,9 @@ class LandingController extends Controller
         $posts = Post::all();
         return view('home', compact('categories', 'carousels', 'promos','pakets','posts'));
     }
+
+    public function showPromo(){
+        $promos = Promo::where('status', 'publish')->orderBy('updated_at', 'desc')->get();
+        return view('landing.promo.index', compact('promos'));
+    }
 }

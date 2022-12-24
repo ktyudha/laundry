@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h1 class="text-center fw-bold">Paket</h1>
-            <div class="owl-servis owl-carousel owl-theme owl-lazy">
+            <div class="owl-paket owl-carousel owl-theme owl-lazy">
                 @foreach ($pakets as $paket)
                     <button type="button" class="border-0 bg-white text-dark"
                         data-bs-target="#myModalPaket-{{ $loop->iteration }}" data-bs-toggle="modal">
@@ -61,13 +61,6 @@
                     </div>
                 </div>
             @endforeach
-
-            <div class="text-center">
-                <a href="servis/">
-                    <button class="btn btn-primary text-center mt-3 fw-semibold" type="submit" name="btnservis"
-                        id="btnservis">Lihat Semua Servis</button>
-                </a>
-            </div>
         </div>
     </div>
 </section>
