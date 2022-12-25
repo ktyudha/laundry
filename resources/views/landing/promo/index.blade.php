@@ -9,15 +9,15 @@
         </div>
         <div class="col-md-4">
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="myPromo">
+                <input class="form-control me-2" placeholder="Search" id="myPromo">
                 <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
 
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3" id="container-promo">
         @foreach ($promos as $promo)
-            <div class="col-md-4" id="myPromoBody">
+            <div class="col-md-4 myPromoCard" id="myPromoBody-{{ $promo->id }}">
                 <button type="button" class="border-0 bg-white text-dark"
                     data-bs-target="#myModalPromo-{{ $promo->id }}" data-bs-toggle="modal">
                     <div class="card border-0 my-3" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)">
@@ -87,16 +87,20 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $("#myPromo").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myPromoBody button").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
-<script>
+    const promos = <?php echo json_encode($promos); ?>;
+
+    function filterPromo(keyword) {
+        {{--  console.log(promos.length);  --}}
+        const filteredPromos = promos.filter(promo => promo.title.toLowerCase().indexOf(keyword) > -1);
+
+        $(".myPromoCard").hide();
+        for (const promo of filteredPromos) {
+            {{--  console.log(promo.title);  --}}
+            $("#myPromoBody-" + promo.id).show();
+        }
+        {{--  console.log(filteredPromos);  --}}
+    }
+    //hover card
     function onMouseOver(element) {
         element.classList.add("shadow");
     }
@@ -104,4 +108,18 @@
     function onMouseOut(element) {
         element.classList.remove("shadow");
     }
+
+    $(document).ready(function() {
+        $("#myPromo").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            if (value.length >= 3) {
+                filterPromo(value);
+            } else {
+                $(".myPromoCard").show();
+            }
+            {{--  $("#myPromoBody button").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });  --}}
+        });
+    });
 </script>
